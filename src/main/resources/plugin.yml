@@ -1,0 +1,57 @@
+name: MineCore
+version: '1.0-SNAPSHOT'
+main: me.arkallic.mineCore.MineCore
+api-version: '1.21'
+
+commands:
+  home:
+    permission: minecore.home
+    description: Teleport to your home
+  homes:
+    permission: minecore.home
+    description: Displays a list of homes
+  sethome:
+    permission: minecore.sethome
+    description: set home to your location.
+  deletehome:
+    permission: minecore.deletehome
+    description: delete home specified.
+  homelimit:
+    permission: minecore.homelimitcommand
+    description: modify the amount of homes a player is allowed to have
+  message:
+    permission: minecore.message
+    description: send a private message to another player
+    aliases:
+      - msg
+      - pm
+      - whisper
+  reply:
+    permission: minecore.message
+    description: reply's to player message
+    aliases:
+      - r
+  spawn:
+    description: Teleports player to spawn
+    permission: minecore.spawn
+  setspawn:
+    description: Sets the spawn point for the server
+    permission: minecore.setspawn
+  announce:
+    description: make an announcement to all online players
+    permission: minecore.announce
+  tpa:
+    description: Request to teleport to another player
+    permission: minecore.tpa
+  tpaccept:
+    description: Accept a teleport request
+    permission: minecore.tpa
+  tpadeny:
+    description: Deny a teleport request
+    permission: minecore.tpa
+  ignore:
+    description: Ignore pms from a player
+    permission: minecore.ignore
+  unignore:
+    description: removes player from ignore list
+    permission: minecore.ignore
