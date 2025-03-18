@@ -1,4 +1,4 @@
-package me.arkallic.minecore.objects;
+package me.arkallic.minecore.models;
 
 import org.bukkit.Location;
 

@@ -2,7 +2,7 @@ package me.arkallic.minecore.commands.home;
 
 import me.arkallic.minecore.MineCore;
 import me.arkallic.minecore.managers.HomeManager;
-import me.arkallic.minecore.objects.Home;
+import me.arkallic.minecore.models.Home;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

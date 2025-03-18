@@ -1,4 +1,4 @@
-package me.arkallic.minecore.objects;
+package me.arkallic.minecore.models;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,8 +1,8 @@
 package me.arkallic.minecore.data;
 
 import me.arkallic.minecore.MineCore;
-import me.arkallic.minecore.objects.Home;
-import me.arkallic.minecore.objects.Mail;
+import me.arkallic.minecore.models.Home;
+import me.arkallic.minecore.models.Mail;
 import me.arkallic.minecore.wrappers.YMLFileWrapper;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -10,17 +10,24 @@ import java.util.*;
 
 public class PlayerData extends YMLFileWrapper {
 
-    private final UUID uuid;
     private final LinkedHashMap<String, Home> homeMap = new LinkedHashMap<>();
     private final List<Mail> mail = new ArrayList<>();
     private final List<UUID> ignoredList = new ArrayList<>();
     private int homeLimit = 1;
     private boolean pvp = true;
+    private UUID guildUUID;
 
 
     public PlayerData(UUID uuid, MineCore mineCore) {
         super("Players", uuid.toString(), mineCore);
-        this.uuid = uuid;
+    }
+
+    public UUID getGuildUUID() {
+        return guildUUID;
+    }
+
+    public void setGuildUUID(UUID guildUUID) {
+        this.guildUUID = guildUUID;
     }
 
     public LinkedHashMap<String, Home> getHomes() {

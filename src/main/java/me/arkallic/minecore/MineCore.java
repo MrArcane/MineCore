@@ -84,6 +84,10 @@ public final class MineCore extends JavaPlugin {
         return this.playerDataManager;
     }
 
+    public HomeManager getHomeManager() {
+        return this.homeManager;
+    }
+
     private void loadConfigData() {
         Location spawnLocation = this.getConfig().getLocation("Spawn.Location");
         configData = new ConfigData(spawnLocation);
