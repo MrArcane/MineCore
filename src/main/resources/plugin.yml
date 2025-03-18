@@ -1,6 +1,6 @@
 name: MineCore
 version: '1.0-SNAPSHOT'
-main: me.arkallic.mineCore.MineCore
+main: me.arkallic.minecore.MineCore
 api-version: '1.21'
 
 commands:
@@ -49,9 +49,15 @@ commands:
   tpadeny:
     description: Deny a teleport request
     permission: minecore.tpa
+  tpacancel:
+    description: Cancel a teleport request you sent
+    permission: minecore.tpa
   ignore:
     description: Ignore pms from a player
     permission: minecore.ignore
   unignore:
     description: removes player from ignore list
     permission: minecore.ignore
+  pvp:
+    description: Change your pvp status.
+    permission: minecore.pvp
