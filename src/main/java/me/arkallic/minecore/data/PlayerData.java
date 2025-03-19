@@ -74,6 +74,7 @@ public class PlayerData extends YMLFileWrapper {
         if (this.getConfig().isConfigurationSection("Settings")) {
             homeLimit = this.getConfig().getInt("Settings.HomeLimit");
             pvp = this.getConfig().getBoolean("Settings.PVP");
+            guildUUID = UUID.fromString(this.getConfig().getString("Settings.Guild"));
         }
 
         if (this.getConfig().isConfigurationSection("IgnoredPlayers")) {
@@ -113,6 +114,7 @@ public class PlayerData extends YMLFileWrapper {
         this.getConfig().set("Settings.HomeLimit", this.homeLimit);
         this.getConfig().set("Settings.PVP", this.pvp);
         this.getConfig().set("IgnoredPlayers", this.ignoredList);
+        this.getConfig().set("Settings.Guild", this.guildUUID);
 
         this.save();
     }

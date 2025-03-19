@@ -17,6 +17,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 public final class MineCore extends JavaPlugin {
 
     private final PlayerDataManager playerDataManager = new PlayerDataManager(this);
@@ -40,6 +42,7 @@ public final class MineCore extends JavaPlugin {
             playerDataManager.register(p.getUniqueId());
         }
         api = new MineCoreAPI(this);
+        getLogger().log(Level.INFO, "MineCore loaded successfully!");
     }
 
     @Override
