@@ -1,5 +1,5 @@
 name: MineCore
-version: '1.0-SNAPSHOT'
+version: '1.0'
 main: me.arkallic.minecore.MineCore
 api-version: '1.21'
 
