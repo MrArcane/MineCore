@@ -15,7 +15,7 @@ public class PlayerData extends YMLFileWrapper {
     private final List<UUID> ignoredList = new ArrayList<>();
     private int homeLimit = 1;
     private boolean pvp = true;
-    private String guild;
+    private UUID guild;
 
 
     public PlayerData(UUID uuid, MineCore mineCore) {
@@ -23,10 +23,10 @@ public class PlayerData extends YMLFileWrapper {
     }
 
     public UUID getGuild() {
-        return UUID.fromString(guild);
+        return guild;
     }
 
-    public void setGuild(String guild) {
+    public void setGuild(UUID guild) {
         this.guild = guild;
     }
 
@@ -74,7 +74,7 @@ public class PlayerData extends YMLFileWrapper {
         if (this.getConfig().isConfigurationSection("Settings")) {
             homeLimit = this.getConfig().getInt("Settings.HomeLimit");
             pvp = this.getConfig().getBoolean("Settings.PVP");
-            guild = this.getConfig().getString("Settings.Guild");
+            guild = UUID.fromString(this.getConfig().getString("Settings.Guild"));
         }
 
         if (this.getConfig().isConfigurationSection("IgnoredPlayers")) {
