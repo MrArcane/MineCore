@@ -22,8 +22,8 @@ public class PlayerData extends YMLFileWrapper {
         super("Players", uuid.toString(), mineCore);
     }
 
-    public String getGuild() {
-        return guild;
+    public UUID getGuild() {
+        return UUID.fromString(guild);
     }
 
     public void setGuild(String guild) {
