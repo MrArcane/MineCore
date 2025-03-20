@@ -103,18 +103,26 @@ public class PlayerData extends YMLFileWrapper {
     }
 
     public void saveData() {
+        // Save mail
         for (Mail mail : this.getMail()) {
             String path = "Mail." + mail.getAuthor().toString();
             this.getConfig().set(path + ".Messages", mail.getMessages());
         }
 
+        // Save homes
         for (Home home : getHomes().values()) {
             this.getConfig().set("Homes." + home.name(), home.location());
         }
+
+        // Save settings
         this.getConfig().set("Settings.HomeLimit", this.homeLimit);
         this.getConfig().set("Settings.PVP", this.pvp);
-        this.getConfig().set("IgnoredPlayers", this.ignoredList);
         this.getConfig().set("Settings.Guild", this.guild);
+
+        // Save ignored players
+        for (UUID uuid : this.getIgnoredList()) {
+            this.getConfig().set("IgnoredPlayers." + uuid.toString(), uuid.toString());
+        }
 
         this.save();
     }

@@ -27,7 +27,7 @@ public final class MineCore extends JavaPlugin {
     private final PMManager pmManager = new PMManager(this, playerDataManager);
 
     private ConfigData configData;
-    private MineCoreAPI api;
+    private final MineCoreAPI api = new MineCoreAPI(this);
 
     @Override
     public void onEnable() {
@@ -41,7 +41,6 @@ public final class MineCore extends JavaPlugin {
         for (Player p : Bukkit.getOnlinePlayers()) {
             playerDataManager.register(p.getUniqueId());
         }
-        api = new MineCoreAPI(this);
         getLogger().log(Level.INFO, "MineCore loaded successfully!");
     }
 
@@ -74,8 +73,8 @@ public final class MineCore extends JavaPlugin {
     }
 
     private void registerListeners() {
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this, pmManager), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(tpaManager), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this, pmManager, playerDataManager), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(tpaManager, pmManager, playerDataManager), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(playerDataManager), this);
     }
 

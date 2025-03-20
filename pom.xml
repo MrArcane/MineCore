@@ -32,8 +32,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>22</source>
-                    <target>22</target>
+                    <source>22</source> <!-- Ensure Java version consistency -->
+                    <target>22</target> <!-- Ensure Java version consistency -->
                 </configuration>
             </plugin>
             <plugin>
