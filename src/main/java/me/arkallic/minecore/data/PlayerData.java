@@ -4,9 +4,13 @@ import me.arkallic.minecore.MineCore;
 import me.arkallic.minecore.models.Home;
 import me.arkallic.minecore.models.Mail;
 import me.arkallic.minecore.wrappers.YMLFileWrapper;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.*;
+import java.util.logging.Level;
+
+import static me.arkallic.minecore.utils.ServerUtils.log;
 
 public class PlayerData extends YMLFileWrapper {
 
@@ -74,7 +78,10 @@ public class PlayerData extends YMLFileWrapper {
         if (this.getConfig().isConfigurationSection("Settings")) {
             homeLimit = this.getConfig().getInt("Settings.HomeLimit");
             pvp = this.getConfig().getBoolean("Settings.PVP");
-            guild = UUID.fromString(this.getConfig().getString("Settings.Guild"));
+            if (this.getConfig().getString("Settings.Guild") != null) {
+                UUID guildUUID = UUID.fromString(this.getConfig().getString("Settings.Guild"));
+                guild = guildUUID;
+            }
         }
 
         if (this.getConfig().isConfigurationSection("IgnoredPlayers")) {
@@ -117,7 +124,8 @@ public class PlayerData extends YMLFileWrapper {
         // Save settings
         this.getConfig().set("Settings.HomeLimit", this.homeLimit);
         this.getConfig().set("Settings.PVP", this.pvp);
-        this.getConfig().set("Settings.Guild", this.guild);
+
+        this.getConfig().set("Settings.Guild", (guild != null) ? guild.toString() : null);
 
         // Save ignored players
         for (UUID uuid : this.getIgnoredList()) {

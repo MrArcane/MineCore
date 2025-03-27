@@ -24,7 +24,6 @@ public class PlayerDataManager {
         this.playerMap.computeIfAbsent(uuid, _ -> new PlayerData(uuid, mineCore));
         PlayerData pd = playerMap.get(uuid);
         pd.loadData();
-        log(mineCore, Level.INFO, uuid + " registered.");
     }
 
     public void unregister(UUID uuid) {
@@ -32,7 +31,6 @@ public class PlayerDataManager {
         pd.saveData();
         pd.getHomes().clear();
         this.playerMap.remove(uuid);
-        log(mineCore, Level.INFO, uuid + " unregistered.");
     }
 
     public PlayerData get(UUID uuid) {
