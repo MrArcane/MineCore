@@ -23,7 +23,7 @@ public class SetSpawnCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (!(sender instanceof Player p)) {
-            log(mineCore, Level.INFO, playersOnlyCommand);
+            log(Level.INFO, PLAYERSONLYCOMMAND);
             return true;
         }
 

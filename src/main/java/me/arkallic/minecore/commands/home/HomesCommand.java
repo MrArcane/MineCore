@@ -36,7 +36,7 @@ public class HomesCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player p)) {
-            log(mineCore, Level.INFO, playersOnlyCommand);
+            log(Level.INFO, PLAYERSONLYCOMMAND);
             return true;
         }
         homeManager.getHomesList(p.getUniqueId());

@@ -33,7 +33,7 @@ public class SetHomeCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (!(sender instanceof Player p)) {
-            ServerUtils.log(mineCore, Level.INFO, ServerUtils.playersOnlyCommand);
+            ServerUtils.log(Level.INFO, ServerUtils.PLAYERSONLYCOMMAND);
             return true;
         }
 

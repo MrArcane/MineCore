@@ -5,19 +5,19 @@ import java.util.UUID;
 
 public class Mail {
 
-    private final UUID author;
-    private final List<String> messages;
+    private final String author;
+    private final String message;
 
-    public Mail(UUID author, List<String> messages) {
+    public Mail(String author, String message) {
         this.author = author;
-        this.messages = messages;
+        this.message= message;
     }
 
-    public UUID getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public List<String> getMessages() {
-        return messages;
+    public String getMessage() {
+        return message;
     }
 }

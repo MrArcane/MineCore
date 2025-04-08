@@ -70,6 +70,7 @@ public final class MineCore extends JavaPlugin {
         Bukkit.getPluginCommand("ignore").setExecutor(new IgnoreCommand(playerDataManager));
         Bukkit.getPluginCommand("unignore").setExecutor(new UnIgnoreCommand(playerDataManager));
         Bukkit.getPluginCommand("pvp").setExecutor(new PVPCommand(playerDataManager));
+        Bukkit.getPluginCommand("mail").setExecutor(new MailCommand(playerDataManager, pmManager));
     }
 
     private void registerListeners() {

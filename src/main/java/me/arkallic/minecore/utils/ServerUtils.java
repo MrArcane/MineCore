@@ -1,6 +1,5 @@
 package me.arkallic.minecore.utils;
 
-import me.arkallic.minecore.MineCore;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -13,10 +12,10 @@ import java.util.regex.Pattern;
 public class ServerUtils {
 
     //Default messages
-    public final static String playersOnlyCommand = "Only players are allowed to use this command.";
+    public final static String PLAYERSONLYCOMMAND = "Only players are allowed to use this command.";
 
-    public static void log(MineCore mineCore, Level level, String message) {
-        mineCore.getLogger().log(level, message);
+    public static void log(Level level, String message) {
+        Bukkit.getPluginManager().getPlugin("MineCore").getLogger().log(level, message);
     }
 
     public static String color(String s) {

@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-import static me.arkallic.minecore.utils.ServerUtils.playersOnlyCommand;
+import static me.arkallic.minecore.utils.ServerUtils.PLAYERSONLYCOMMAND;
 import static me.arkallic.minecore.utils.ServerUtils.sendChat;
 
 public class ReplyCommand implements CommandExecutor {
@@ -39,7 +39,7 @@ public class ReplyCommand implements CommandExecutor {
         StringBuilder message = new StringBuilder();
 
         if (!(sender instanceof Player p)) {
-            sendChat(sender, playersOnlyCommand);
+            sendChat(sender, PLAYERSONLYCOMMAND);
             return true;
         }
 

@@ -26,6 +26,10 @@ commands:
       - msg
       - pm
       - whisper
+  mail:
+    permission: minecore.mail
+    aliases:
+      - inbox
   reply:
     permission: minecore.message
     description: reply's to player message

@@ -23,7 +23,7 @@ public class SpawnCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         if (!(sender instanceof Player p)) {
-            log(mineCore, Level.INFO, playersOnlyCommand);
+            log(Level.INFO, PLAYERSONLYCOMMAND);
             return true;
         }
         ConfigData configData = mineCore.getConfigData();

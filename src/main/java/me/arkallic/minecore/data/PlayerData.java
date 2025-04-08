@@ -4,18 +4,14 @@ import me.arkallic.minecore.MineCore;
 import me.arkallic.minecore.models.Home;
 import me.arkallic.minecore.models.Mail;
 import me.arkallic.minecore.wrappers.YMLFileWrapper;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.*;
-import java.util.logging.Level;
-
-import static me.arkallic.minecore.utils.ServerUtils.log;
 
 public class PlayerData extends YMLFileWrapper {
 
     private final LinkedHashMap<String, Home> homeMap = new LinkedHashMap<>();
-    private final List<Mail> mail = new ArrayList<>();
+    private final List<Mail> inbox = new ArrayList<>();
     private final List<UUID> ignoredList = new ArrayList<>();
     private int homeLimit = 1;
     private boolean pvp = true;
@@ -39,7 +35,7 @@ public class PlayerData extends YMLFileWrapper {
     }
 
     public List<Mail> getMail() {
-        return mail;
+        return inbox;
     }
 
     public List<UUID> getIgnoredList() {
@@ -73,8 +69,22 @@ public class PlayerData extends YMLFileWrapper {
         this.homeMap.remove(homeName);
     }
 
-    public void loadData() {
+    public void loadPlayerData() {
+        loadSettings();
+        loadHomes();
+        loadMail();
+        loadIgnoredPlayers();
+    }
+    private void loadIgnoredPlayers() {
+        if (this.getConfig().isConfigurationSection("IgnoredPlayers")) {
+            for (String ignored : this.getConfig().getConfigurationSection("IgnoredPlayers").getKeys(false)) {
+                UUID uuid = UUID.fromString(ignored);
+                ignoredList.add(uuid);
+            }
+        }
+    }
 
+    private void loadSettings() {
         if (this.getConfig().isConfigurationSection("Settings")) {
             homeLimit = this.getConfig().getInt("Settings.HomeLimit");
             pvp = this.getConfig().getBoolean("Settings.PVP");
@@ -83,56 +93,69 @@ public class PlayerData extends YMLFileWrapper {
                 guild = guildUUID;
             }
         }
+    }
 
-        if (this.getConfig().isConfigurationSection("IgnoredPlayers")) {
-            for (String ignored : this.getConfig().getConfigurationSection( "IgnoredPlayers").getKeys(false)) {
-                UUID uuid = UUID.fromString(ignored);
-                ignoredList.add(uuid);
-            }
+    private void loadMail() {
+        if (!this.getConfig().isConfigurationSection("Mail")) {
+            return;
         }
 
+        for (String key : this.getConfig().getConfigurationSection("Mail").getKeys(false)) {
+            ConfigurationSection mailSection = this.getConfig().getConfigurationSection("Mail." + key);
+            String author = mailSection.getString("Author");
+            String message = mailSection.getString("Message");
+
+            this.inbox.add(new Mail(author, message));
+        }
+    }
+
+    private void loadHomes() {
         if (this.getConfig().isConfigurationSection("Homes")) {
             for (String homeName : this.getConfig().getConfigurationSection("Homes").getKeys(false)) {
                 Home home = new Home(homeName, this.getConfig().getLocation("Homes." + homeName));
                 this.getHomes().putIfAbsent(homeName, home);
             }
-
-            if (this.getConfig().isConfigurationSection("Mail")) {
-                for (String mail : this.getConfig().getConfigurationSection("Mail").getKeys(false)) {
-                    ConfigurationSection messageSection = this.getConfig().getConfigurationSection(mail);
-                    UUID author = (UUID) messageSection.get("Author");
-                    List<String> messages = messageSection.getStringList(author + ".Messages");
-                    Mail playerMail = new Mail(author, messages);
-                    this.getMail().add(playerMail);
-                }
-            }
         }
     }
 
+
     public void saveData() {
-        // Save mail
-        for (Mail mail : this.getMail()) {
-            String path = "Mail." + mail.getAuthor().toString();
-            this.getConfig().set(path + ".Messages", mail.getMessages());
-        }
+        saveMail();
+        saveHomes();
+        saveSettings();
+        saveIgnored();
+        this.save();
+    }
 
-        // Save homes
-        for (Home home : getHomes().values()) {
-            this.getConfig().set("Homes." + home.name(), home.location());
-        }
-
-        // Save settings
+    private void saveSettings() {
         this.getConfig().set("Settings.HomeLimit", this.homeLimit);
         this.getConfig().set("Settings.PVP", this.pvp);
-
         this.getConfig().set("Settings.Guild", (guild != null) ? guild.toString() : null);
+    }
 
-        // Save ignored players
+    private void saveIgnored() {
         for (UUID uuid : this.getIgnoredList()) {
             this.getConfig().set("IgnoredPlayers." + uuid.toString(), uuid.toString());
         }
+    }
 
-        this.save();
+    private void saveHomes() {
+        for (Home home : getHomes().values()) {
+            this.getConfig().set("Homes." + home.name(), home.location());
+        }
+    }
+
+    private void saveMail() {
+        String basePath = "Mail";
+        getConfig().set(basePath, null); // Clear old mail
+
+        for (int i = 0; i < inbox.size(); i++) {
+            Mail mail = this.inbox.get(i);
+            String path = basePath + "." + i;
+            getConfig().set(path + ".Author", mail.getAuthor().toString());
+            getConfig().set(path + ".Message", mail.getMessage());
+        }
+
     }
 
 }

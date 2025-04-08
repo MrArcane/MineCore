@@ -1,9 +1,13 @@
 package me.arkallic.minecore.managers;
 
 import me.arkallic.minecore.MineCore;
+import me.arkallic.minecore.data.PlayerData;
+import me.arkallic.minecore.models.Mail;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -19,6 +23,23 @@ public class PMManager {
     public PMManager(MineCore mineCore, PlayerDataManager playerDataManager) {
         this.mineCore = mineCore;
         this.playerDataManager = playerDataManager;
+    }
+
+    public void sendMail(Player player, OfflinePlayer target, String message) {
+        UUID targetID = target.getUniqueId();
+
+        if (!playerDataManager.exists(targetID)) {
+            sendChat(player, "&cCouldn't find player: " + target.getName());
+            return;
+        }
+        PlayerData pd = playerDataManager.getOrLoad(targetID);
+        pd.getMail().add(new Mail(player.getName(), message));
+
+        if (!target.isOnline()) {
+            playerDataManager.unregister(targetID);
+        }
+
+        sendChat(player, "&aMessage sent successfully!");
     }
 
     public void send(UUID senderUUID, UUID recipientUUID, String message) {

@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.arkallic.minecore.utils.ServerUtils.playersOnlyCommand;
+import static me.arkallic.minecore.utils.ServerUtils.PLAYERSONLYCOMMAND;
 import static me.arkallic.minecore.utils.ServerUtils.sendChat;
 
 public class UnIgnoreCommand implements CommandExecutor {
@@ -36,7 +36,7 @@ public class UnIgnoreCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player p)) {
-            sendChat(sender, playersOnlyCommand);
+            sendChat(sender, PLAYERSONLYCOMMAND);
             return true;
         }
 
