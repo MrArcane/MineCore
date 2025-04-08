@@ -1,11 +1,10 @@
 package me.arkallic.minecore.commands;
 
-import me.arkallic.minecore.data.PlayerData;
+import me.arkallic.minecore.managers.playerdata.PlayerData;
 import me.arkallic.minecore.managers.PMManager;
-import me.arkallic.minecore.managers.PlayerDataManager;
-import me.arkallic.minecore.models.Mail;
-import me.arkallic.minecore.utils.MiscUtils;
-import me.arkallic.minecore.utils.ServerUtils;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
+import me.arkallic.minecore.utils.NumberUtils;
+import me.arkallic.minecore.utils.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -15,8 +14,8 @@ import org.bukkit.entity.Player;
 
 import java.util.logging.Level;
 
-import static me.arkallic.minecore.utils.ServerUtils.log;
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.log;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class MailCommand implements CommandExecutor {
 
@@ -51,7 +50,7 @@ public class MailCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player p)) {
-            log(Level.INFO, ServerUtils.PLAYERSONLYCOMMAND);
+            log(Level.INFO, ChatUtils.PLAYERSONLYCOMMAND);
             return true;
         }
 
@@ -94,7 +93,7 @@ public class MailCommand implements CommandExecutor {
 
             case "remove":
 
-                if (!MiscUtils.isInt(args[1])) {
+                if (!NumberUtils.isInt(args[1])) {
                     sendChat(p, "&cUSAGE: /mail remove <integer>");
                     return true;
                 }

@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ServerUtils {
+public class ChatUtils {
 
     //Default messages
     public final static String PLAYERSONLYCOMMAND = "Only players are allowed to use this command.";

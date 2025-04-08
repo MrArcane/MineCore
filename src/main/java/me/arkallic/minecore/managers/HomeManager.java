@@ -1,6 +1,7 @@
 package me.arkallic.minecore.managers;
 
-import me.arkallic.minecore.data.PlayerData;
+import me.arkallic.minecore.managers.playerdata.PlayerData;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
 import me.arkallic.minecore.models.Home;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -9,7 +10,7 @@ import org.bukkit.entity.Player;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class HomeManager {
 

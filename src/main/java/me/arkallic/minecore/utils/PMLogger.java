@@ -1,4 +1,4 @@
-package me.arkallic.minecore.loggers;
+package me.arkallic.minecore.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

@@ -3,17 +3,16 @@ package me.arkallic.minecore;
 import me.arkallic.minecore.commands.*;
 import me.arkallic.minecore.commands.home.*;
 import me.arkallic.minecore.commands.TPACommand;
-import me.arkallic.minecore.data.ConfigData;
+import me.arkallic.minecore.utils.ConfigData;
 import me.arkallic.minecore.listeners.EntityDamageListener;
 import me.arkallic.minecore.listeners.PlayerJoinListener;
 import me.arkallic.minecore.listeners.PlayerQuitListener;
-import me.arkallic.minecore.loggers.PMLogger;
+import me.arkallic.minecore.utils.PMLogger;
 import me.arkallic.minecore.managers.HomeManager;
 import me.arkallic.minecore.managers.PMManager;
-import me.arkallic.minecore.managers.PlayerDataManager;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
 import me.arkallic.minecore.managers.TPAManager;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,19 +20,19 @@ import java.util.logging.Level;
 
 public final class MineCore extends JavaPlugin {
 
+    private final ConfigData configData = new ConfigData(this);
     private final PlayerDataManager playerDataManager = new PlayerDataManager(this);
     private final HomeManager homeManager = new HomeManager(playerDataManager);
     private final TPAManager tpaManager = new TPAManager(this);
     private final PMManager pmManager = new PMManager(this, playerDataManager);
 
-    private ConfigData configData;
     private final MineCoreAPI api = new MineCoreAPI(this);
 
     @Override
     public void onEnable() {
 
         this.saveDefaultConfig();
-        this.loadConfigData();
+        this.configData.loadConfigData();
         this.registerCommands();
         this.registerListeners();
         PMLogger.cleanOldLogs(30);
@@ -46,7 +45,7 @@ public final class MineCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        this.saveConfigData();
+        this.configData.saveConfigData();
         for (Player p : Bukkit.getOnlinePlayers()) {
             playerDataManager.unregister(p.getUniqueId());
         }
@@ -91,15 +90,6 @@ public final class MineCore extends JavaPlugin {
         return this.homeManager;
     }
 
-    private void loadConfigData() {
-        Location spawnLocation = this.getConfig().getLocation("Spawn.Location");
-        configData = new ConfigData(spawnLocation);
-    }
-
-    private void saveConfigData() {
-        this.getConfig().set("Spawn.Location", this.configData.getSpawnLocation());
-        this.saveConfig();
-    }
 
     public ConfigData getConfigData() {
         return configData;

@@ -1,7 +1,7 @@
 package me.arkallic.minecore.commands;
 
-import me.arkallic.minecore.data.PlayerData;
-import me.arkallic.minecore.managers.PlayerDataManager;
+import me.arkallic.minecore.managers.playerdata.PlayerData;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -9,8 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.arkallic.minecore.utils.ServerUtils.PLAYERSONLYCOMMAND;
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.PLAYERSONLYCOMMAND;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class UnIgnoreCommand implements CommandExecutor {
 

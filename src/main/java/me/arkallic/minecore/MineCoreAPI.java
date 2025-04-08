@@ -1,7 +1,7 @@
 package me.arkallic.minecore;
 
 import me.arkallic.minecore.managers.HomeManager;
-import me.arkallic.minecore.managers.PlayerDataManager;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
 
 public class MineCoreAPI {
     private MineCore mineCore;

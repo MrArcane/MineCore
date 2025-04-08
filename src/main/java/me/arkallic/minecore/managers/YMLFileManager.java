@@ -1,4 +1,4 @@
-package me.arkallic.minecore.wrappers;
+package me.arkallic.minecore.managers;
 
 import me.arkallic.minecore.MineCore;
 import org.bukkit.Bukkit;
@@ -10,13 +10,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
 
-public class YMLFileWrapper {
+public class YMLFileManager {
     private File file;
     private final String fileName;
     private FileConfiguration config;
     private final MineCore mineCore;
 
-    public YMLFileWrapper(String folder, String fileName, MineCore mineCore) {
+    public YMLFileManager(String folder, String fileName, MineCore mineCore) {
         this.fileName = fileName;
         this.mineCore = mineCore;
         this.file = new File(mineCore.getDataFolder(), folder + File.separator + fileName + ".yml");

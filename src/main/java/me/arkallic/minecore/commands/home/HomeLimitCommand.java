@@ -1,15 +1,15 @@
 package me.arkallic.minecore.commands.home;
 
-import me.arkallic.minecore.data.PlayerData;
-import me.arkallic.minecore.managers.PlayerDataManager;
-import me.arkallic.minecore.utils.MiscUtils;
+import me.arkallic.minecore.managers.playerdata.PlayerData;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
+import me.arkallic.minecore.utils.NumberUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class HomeLimitCommand implements CommandExecutor {
 
@@ -28,7 +28,7 @@ public class HomeLimitCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 
-        if (args.length != 2 || !MiscUtils.isInt(args[1])) {
+        if (args.length != 2 || !NumberUtils.isInt(args[1])) {
             sendChat(sender, "&cINVALID USAGE: /homelimit <PLAYER> <AMOUNT>");
             return true;
         }

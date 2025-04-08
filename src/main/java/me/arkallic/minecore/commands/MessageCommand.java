@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class MessageCommand implements CommandExecutor {
 

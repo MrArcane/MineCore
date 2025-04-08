@@ -1,18 +1,15 @@
 package me.arkallic.minecore.listeners;
 
 import me.arkallic.minecore.MineCore;
-import me.arkallic.minecore.data.PlayerData;
+import me.arkallic.minecore.managers.playerdata.PlayerData;
 import me.arkallic.minecore.managers.PMManager;
-import me.arkallic.minecore.managers.PlayerDataManager;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.UUID;
-import java.util.logging.Level;
-
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class PlayerJoinListener implements Listener {
 

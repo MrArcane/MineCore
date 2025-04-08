@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-import static me.arkallic.minecore.utils.ServerUtils.PLAYERSONLYCOMMAND;
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.PLAYERSONLYCOMMAND;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class ReplyCommand implements CommandExecutor {
 

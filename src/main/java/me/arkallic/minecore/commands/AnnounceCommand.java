@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import static me.arkallic.minecore.utils.ServerUtils.announceToServer;
+import static me.arkallic.minecore.utils.ChatUtils.announceToServer;
 
 public class AnnounceCommand implements CommandExecutor {
     /**

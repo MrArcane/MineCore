@@ -2,7 +2,7 @@ package me.arkallic.minecore.commands.home;
 
 import me.arkallic.minecore.MineCore;
 import me.arkallic.minecore.managers.HomeManager;
-import me.arkallic.minecore.utils.ServerUtils;
+import me.arkallic.minecore.utils.ChatUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 import java.util.logging.Level;
 
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class SetHomeCommand implements CommandExecutor {
 
@@ -33,7 +33,7 @@ public class SetHomeCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (!(sender instanceof Player p)) {
-            ServerUtils.log(Level.INFO, ServerUtils.PLAYERSONLYCOMMAND);
+            ChatUtils.log(Level.INFO, ChatUtils.PLAYERSONLYCOMMAND);
             return true;
         }
 

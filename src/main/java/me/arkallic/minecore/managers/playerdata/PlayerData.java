@@ -1,14 +1,15 @@
-package me.arkallic.minecore.data;
+package me.arkallic.minecore.managers.playerdata;
 
 import me.arkallic.minecore.MineCore;
 import me.arkallic.minecore.models.Home;
 import me.arkallic.minecore.models.Mail;
-import me.arkallic.minecore.wrappers.YMLFileWrapper;
+import me.arkallic.minecore.managers.YMLFileManager;
+import me.arkallic.minecore.utils.ConfigData;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.*;
 
-public class PlayerData extends YMLFileWrapper {
+public class PlayerData extends YMLFileManager {
 
     private final LinkedHashMap<String, Home> homeMap = new LinkedHashMap<>();
     private final List<Mail> inbox = new ArrayList<>();

@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.logging.Level;
 
-import static me.arkallic.minecore.utils.ServerUtils.*;
+import static me.arkallic.minecore.utils.ChatUtils.*;
 
 public class HomesCommand implements CommandExecutor {
 

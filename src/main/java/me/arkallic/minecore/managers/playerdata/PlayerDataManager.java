@@ -1,10 +1,8 @@
-package me.arkallic.minecore.managers;
+package me.arkallic.minecore.managers.playerdata;
 
 import me.arkallic.minecore.MineCore;
-import me.arkallic.minecore.data.PlayerData;
 import me.arkallic.minecore.models.Mail;
 import me.arkallic.minecore.utils.Paginator;
-import me.arkallic.minecore.wrappers.YMLFileWrapper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -12,8 +10,8 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.logging.Level;
 
-import static me.arkallic.minecore.utils.ServerUtils.log;
-import static me.arkallic.minecore.utils.ServerUtils.sendChat;
+import static me.arkallic.minecore.utils.ChatUtils.log;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class PlayerDataManager {
 
@@ -79,7 +77,7 @@ public class PlayerDataManager {
             return;
         }
 
-        sendChat(player, "&6--- Inbox Page " + page + "/" + totalPages + " ---");
+        sendChat(player, "&6&m   &l&6[&e Inbox Page &7(&a" + page + "&7/&c" + totalPages + "&7) &6]&m   ");
 
         List<Mail> pageItems = paginator.getPage(page);
         int globalIndexStart = (page - 1) * 5;

@@ -1,16 +1,12 @@
 package me.arkallic.minecore.listeners;
 
 import me.arkallic.minecore.managers.PMManager;
-import me.arkallic.minecore.managers.PlayerDataManager;
+import me.arkallic.minecore.managers.playerdata.PlayerDataManager;
 import me.arkallic.minecore.managers.TPAManager;
-import org.bukkit.Bukkit;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import java.util.logging.Level;
 
 public class PlayerQuitListener implements Listener {
 

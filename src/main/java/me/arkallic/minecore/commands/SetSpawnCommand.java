@@ -1,7 +1,7 @@
 package me.arkallic.minecore.commands;
 
 import me.arkallic.minecore.MineCore;
-import me.arkallic.minecore.data.ConfigData;
+import me.arkallic.minecore.utils.ConfigData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.logging.Level;
 
-import static me.arkallic.minecore.utils.ServerUtils.*;
+import static me.arkallic.minecore.utils.ChatUtils.*;
 
 public class SetSpawnCommand implements CommandExecutor {
 

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class MiscUtils {
+public class NumberUtils {
 
     public static boolean isInt(String s) {
         try {
@@ -15,11 +15,4 @@ public class MiscUtils {
             throw new NumberFormatException(s);
         }
     }
-
-    public static String formatTimestamp(long timestamp) {
-        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return dateTime.format(formatter);
-    }
-
 }
