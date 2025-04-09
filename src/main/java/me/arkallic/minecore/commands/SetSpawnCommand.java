@@ -30,6 +30,8 @@ public class SetSpawnCommand implements CommandExecutor {
         ConfigData configData = mineCore.getConfigData();
 
         configData.setSpawnLocation(p.getLocation());
+        configData.saveSpawnLocation();
+        configData.reloadConfig();
         sendChat(sender, "&aSpawn set to your location successfully!");
         return true;
     }

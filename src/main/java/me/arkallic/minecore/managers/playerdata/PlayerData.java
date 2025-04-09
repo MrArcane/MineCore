@@ -14,13 +14,25 @@ public class PlayerData extends YMLFileManager {
     private final LinkedHashMap<String, Home> homeMap = new LinkedHashMap<>();
     private final List<Mail> inbox = new ArrayList<>();
     private final List<UUID> ignoredList = new ArrayList<>();
-    private int homeLimit = 1;
-    private boolean pvp = true;
+    private int homeLimit;
+    private boolean pvp;
     private UUID guild;
+    private boolean muted = false;
 
 
     public PlayerData(UUID uuid, MineCore mineCore) {
         super("Players", uuid.toString(), mineCore);
+
+        pvp = mineCore.getConfigData().isDefaultPVPEnabled();
+        homeLimit = mineCore.getConfigData().getPlayerHomeLimit();
+    }
+
+    public boolean isMuted() {
+        return muted;
+    }
+
+    public void setMuted(boolean muted) {
+        this.muted = muted;
     }
 
     public UUID getGuild() {
@@ -89,6 +101,8 @@ public class PlayerData extends YMLFileManager {
         if (this.getConfig().isConfigurationSection("Settings")) {
             homeLimit = this.getConfig().getInt("Settings.HomeLimit");
             pvp = this.getConfig().getBoolean("Settings.PVP");
+            muted = this.getConfig().getBoolean("Settings.Muted");
+
             if (this.getConfig().getString("Settings.Guild") != null) {
                 UUID guildUUID = UUID.fromString(this.getConfig().getString("Settings.Guild"));
                 guild = guildUUID;
@@ -132,6 +146,7 @@ public class PlayerData extends YMLFileManager {
         this.getConfig().set("Settings.HomeLimit", this.homeLimit);
         this.getConfig().set("Settings.PVP", this.pvp);
         this.getConfig().set("Settings.Guild", (guild != null) ? guild.toString() : null);
+        this.getConfig().set("Settings.Muted", this.muted);
     }
 
     private void saveIgnored() {

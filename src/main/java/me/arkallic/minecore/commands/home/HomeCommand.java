@@ -33,6 +33,11 @@ public class HomeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
+        if (sender instanceof Player player && !player.hasPermission("minecore.home")) {
+            sendChat(player, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         if (!(sender instanceof Player p)) {
             log(Level.INFO, PLAYERSONLYCOMMAND);
             return true;

@@ -1,3 +1,6 @@
-Settings:
-  Max-homes: 1
-  Default-PVP-status: true
+Server-settings:
+  Display-inbox-on-join: true
+
+Default-player-settings:
+  Home-limit: 1
+  PVP-enabled: true

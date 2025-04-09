@@ -31,7 +31,6 @@ public final class MineCore extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        this.saveDefaultConfig();
         this.configData.loadConfigData();
         this.registerCommands();
         this.registerListeners();
@@ -40,12 +39,13 @@ public final class MineCore extends JavaPlugin {
         for (Player p : Bukkit.getOnlinePlayers()) {
             playerDataManager.register(p.getUniqueId());
         }
+        this.saveDefaultConfig();
         getLogger().log(Level.INFO, "MineCore loaded successfully!");
     }
 
     @Override
     public void onDisable() {
-        this.configData.saveConfigData();
+        this.configData.reloadConfig();
         for (Player p : Bukkit.getOnlinePlayers()) {
             playerDataManager.unregister(p.getUniqueId());
         }
@@ -70,10 +70,11 @@ public final class MineCore extends JavaPlugin {
         Bukkit.getPluginCommand("unignore").setExecutor(new UnIgnoreCommand(playerDataManager));
         Bukkit.getPluginCommand("pvp").setExecutor(new PVPCommand(playerDataManager));
         Bukkit.getPluginCommand("mail").setExecutor(new MailCommand(playerDataManager, pmManager));
+        Bukkit.getPluginCommand("inbox").setExecutor(new InboxCommand(playerDataManager));
     }
 
     private void registerListeners() {
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this, pmManager, playerDataManager), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(playerDataManager), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(tpaManager, pmManager, playerDataManager), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(playerDataManager), this);
     }

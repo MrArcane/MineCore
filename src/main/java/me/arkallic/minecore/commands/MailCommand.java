@@ -29,7 +29,7 @@ public class MailCommand implements CommandExecutor {
 
     private void sendHelpMessage(Player p) {
         sendChat(p, "&aInbox");
-        sendChat(p, "/mail read - Check your inbox");
+        sendChat(p, "/inbox - Check your inbox");
         sendChat(p, "/mail send <player> <messsage> - sends a message to a player");
         sendChat(p, "/mail remove <int> - Remove a message by its number ");
         sendChat(p, "/mail clear - Clears your inbox");
@@ -64,22 +64,6 @@ public class MailCommand implements CommandExecutor {
         String subCommand = args[0].toLowerCase();
 
         switch (subCommand) {
-            case "read":
-                int page = 1;
-
-                // If a page argument was given, parse it
-                if (args.length > 1) {
-                    try {
-                        page = Integer.parseInt(args[1]);
-                    } catch (NumberFormatException e) {
-                        sendChat(p, "&cInvalid page number.");
-                        return true;
-                    }
-                }
-
-                playerDataManager.displayInbox(p, page);
-                break;
-
             case "send":
                 OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                 StringBuilder message = new StringBuilder();

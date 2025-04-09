@@ -7,13 +7,20 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigData {
 
+    /** NOTE TO SELF
+     * You must add any value to the config.yml in Resources to add it on config creation :(
+     */
+    //DEFAULT VALUES
     private static final int DEFAULT_PLAYER_HOME_LIMIT = 1;
-    private static final boolean DEFAULT_PLAYER_PVP = false;
+    private static final boolean DEFAULT_PLAYER_PVP = true;
+    private static final boolean DISPLAY_INBOX_ON_JOIN = true;
+    private static final Location SPAWN_LOCATION = null;
 
     private final MineCore mineCore;
 
     //Server values
     private Location spawnLocation;
+    private boolean displayInboxOnJoin;
 
     //Player values
     private int playerHomeLimit;
@@ -45,26 +52,42 @@ public class ConfigData {
 
     public void loadConfigData() {
 
+        //Server settings
         this.spawnLocation = getConfig().getLocation("Spawn.Location");
+        this.displayInboxOnJoin = getServerSettings().getBoolean("Display-inbox-on-join", DISPLAY_INBOX_ON_JOIN);
+
+
 
         //Player settings
         this.playerHomeLimit = getPlayerSettings().getInt("Home-limit", DEFAULT_PLAYER_HOME_LIMIT);
         this.defaultPVPEnabled = getPlayerSettings().getBoolean("PVP-enabled", DEFAULT_PLAYER_PVP);
+        mineCore.saveDefaultConfig();
 
     }
 
     public void saveConfigData() {
-        //Server settings
-        this.getConfig().set("Spawn.Location", this.spawnLocation);
+        // Server settings
+        if (getConfig().get("Spawn.Location") == null) {
+            getConfig().set("Spawn.Location", this.spawnLocation);
+        }
+        if (getServerSettings().get("Display-inbox-on-join") == null) {
+            getServerSettings().set("Display-inbox-on-join", this.displayInboxOnJoin);
+        }
 
-        //Player settings
-        getPlayerSettings().set("Home-limit", this.playerHomeLimit);
-        getPlayerSettings().set("Pvp-enabled", this.defaultPVPEnabled);
+        // Player settings
+        if (getPlayerSettings().get("Home-limit") == null) {
+            getPlayerSettings().set("Home-limit", this.playerHomeLimit);
+        }
+        if (getPlayerSettings().get("PVP-enabled") == null) {
+            getPlayerSettings().set("PVP-enabled", this.defaultPVPEnabled);
+        }
+
         mineCore.saveConfig();
     }
 
     public void reloadConfig() {
         this.mineCore.reloadConfig();
+        this.saveConfigData();
         this.loadConfigData();
     }
 
@@ -95,5 +118,13 @@ public class ConfigData {
 
     public void setDefaultPVPEnabled(boolean defaultPVPEnabled) {
         this.defaultPVPEnabled = defaultPVPEnabled;
+    }
+
+    public boolean displayInboxOnJoin() {
+        return displayInboxOnJoin;
+    }
+
+    public void setDisplayInboxOnJoin(boolean displayInboxOnJoin) {
+        this.displayInboxOnJoin = displayInboxOnJoin;
     }
 }

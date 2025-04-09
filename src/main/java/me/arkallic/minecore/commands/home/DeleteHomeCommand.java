@@ -32,6 +32,11 @@ public class DeleteHomeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
+        if (sender instanceof Player player && !player.hasPermission("minecore.deletehome")) {
+            sendChat(player, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         if (!(sender instanceof Player p)) {
             ChatUtils.log(Level.INFO, ChatUtils.PLAYERSONLYCOMMAND);
             return true;

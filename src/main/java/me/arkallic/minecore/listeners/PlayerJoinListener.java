@@ -13,13 +13,9 @@ import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
 public class PlayerJoinListener implements Listener {
 
-    private final MineCore mineCore;
-    private final PMManager pmManager;
     private final PlayerDataManager playerDataManager;
 
-    public PlayerJoinListener(MineCore mineCore, PMManager pmManager, PlayerDataManager playerDataManager) {
-        this.mineCore = mineCore;
-        this.pmManager = pmManager;
+    public PlayerJoinListener(PlayerDataManager playerDataManager) {
         this.playerDataManager = playerDataManager;
     }
 
@@ -32,7 +28,7 @@ public class PlayerJoinListener implements Listener {
         if (!pd.getMail().isEmpty()) {
             int unreadMessages = pd.getMail().size();
             sendChat(p, "&eYou have &7" + unreadMessages + " &eunread message" + (unreadMessages == 1 ? "" : "s") + "!");
-            sendChat(p, "&eType &7/mail read &eto view your messages.");
+            sendChat(p, "&eType &7/inbox &eto view your messages.");
         }
     }
 }

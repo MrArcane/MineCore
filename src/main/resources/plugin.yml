@@ -4,6 +4,7 @@ main: me.arkallic.minecore.MineCore
 api-version: '1.21'
 
 commands:
+
   home:
     permission: minecore.home
     description: Teleport to your home
@@ -17,7 +18,7 @@ commands:
     permission: minecore.deletehome
     description: delete home specified.
   homelimit:
-    permission: minecore.homelimitcommand
+    permission: minecore.homelimit
     description: modify the amount of homes a player is allowed to have
   message:
     permission: minecore.message
@@ -28,8 +29,8 @@ commands:
       - whisper
   mail:
     permission: minecore.mail
-    aliases:
-      - inbox
+  inbox:
+    permission: minecore.mail
   reply:
     permission: minecore.message
     description: reply's to player message

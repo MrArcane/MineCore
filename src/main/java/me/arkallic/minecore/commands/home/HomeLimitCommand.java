@@ -8,6 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
@@ -27,6 +28,11 @@ public class HomeLimitCommand implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
+
+        if (sender instanceof Player player && !player.hasPermission("minecore.homelimit")) {
+            sendChat(player, "&cYou don't have permission to use this command.");
+            return true;
+        }
 
         if (args.length != 2 || !NumberUtils.isInt(args[1])) {
             sendChat(sender, "&cINVALID USAGE: /homelimit <PLAYER> <AMOUNT>");

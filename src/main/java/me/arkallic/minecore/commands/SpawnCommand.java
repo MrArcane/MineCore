@@ -27,6 +27,11 @@ public class SpawnCommand implements CommandExecutor {
             return true;
         }
         ConfigData configData = mineCore.getConfigData();
+        if (configData.getSpawnLocation() == null) {
+            sendChat(p, "&cThere is no spawn!");
+            return true;
+        }
+
         p.teleport(configData.getSpawnLocation());
         sendChat(sender, "&aWelcome to the server spawn!");
         return false;
