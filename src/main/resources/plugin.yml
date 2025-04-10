@@ -66,3 +66,6 @@ commands:
   pvp:
     description: Change your pvp status.
     permission: minecore.pvp
+  mute:
+    description: Mute/Unmute a player
+    permission: minecore.mute

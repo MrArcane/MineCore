@@ -3,6 +3,7 @@ package me.arkallic.minecore;
 import me.arkallic.minecore.commands.*;
 import me.arkallic.minecore.commands.home.*;
 import me.arkallic.minecore.commands.TPACommand;
+import me.arkallic.minecore.listeners.PlayerChatListener;
 import me.arkallic.minecore.utils.ConfigData;
 import me.arkallic.minecore.listeners.EntityDamageListener;
 import me.arkallic.minecore.listeners.PlayerJoinListener;
@@ -61,7 +62,7 @@ public final class MineCore extends JavaPlugin {
         Bukkit.getPluginCommand("reply").setExecutor(new ReplyCommand(this, pmManager));
         Bukkit.getPluginCommand("spawn").setExecutor(new SpawnCommand(this));
         Bukkit.getPluginCommand("setspawn").setExecutor(new SetSpawnCommand(this));
-        Bukkit.getPluginCommand("announce").setExecutor(new AnnounceCommand());
+        Bukkit.getPluginCommand("announce").setExecutor(new BroadcastCommand());
         Bukkit.getPluginCommand("tpa").setExecutor(new TPACommand(this, tpaManager));
         Bukkit.getPluginCommand("tpaccept").setExecutor(new TPACommand(this, tpaManager));
         Bukkit.getPluginCommand("tpadeny").setExecutor(new TPACommand(this, tpaManager));
@@ -71,12 +72,14 @@ public final class MineCore extends JavaPlugin {
         Bukkit.getPluginCommand("pvp").setExecutor(new PVPCommand(playerDataManager));
         Bukkit.getPluginCommand("mail").setExecutor(new MailCommand(playerDataManager, pmManager));
         Bukkit.getPluginCommand("inbox").setExecutor(new InboxCommand(playerDataManager));
+        Bukkit.getPluginCommand("mute").setExecutor(new MuteCommand(playerDataManager));
     }
 
     private void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(playerDataManager), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(tpaManager, pmManager, playerDataManager), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(playerDataManager), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerChatListener(playerDataManager), this);
     }
 
     public MineCoreAPI getAPI() {

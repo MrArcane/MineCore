@@ -40,6 +40,13 @@ public class TPACommand implements CommandExecutor {
             log(Level.INFO, PLAYERSONLYCOMMAND);
             return true;
         }
+
+        if (!p.hasPermission("minecore.tpa")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
+
         if (command.getName().equalsIgnoreCase("tpa")) {
 
             if (args.length == 0) {

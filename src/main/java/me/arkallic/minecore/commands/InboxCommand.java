@@ -37,6 +37,11 @@ public class InboxCommand implements CommandExecutor {
             return true;
         }
 
+        if (!p.hasPermission("minecore.inbox")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         int page = 1;
 
         // If a page argument was given, parse it

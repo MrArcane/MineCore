@@ -27,6 +27,12 @@ public class SetSpawnCommand implements CommandExecutor {
             return true;
         }
 
+        if (!p.hasPermission("minecore.setspawn")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
+
         ConfigData configData = mineCore.getConfigData();
 
         configData.setSpawnLocation(p.getLocation());

@@ -1,4 +1,4 @@
-package me.arkallic.minecore.commands.home;
+package me.arkallic.minecore.commands;
 
 import me.arkallic.minecore.managers.playerdata.PlayerData;
 import me.arkallic.minecore.managers.playerdata.PlayerDataManager;

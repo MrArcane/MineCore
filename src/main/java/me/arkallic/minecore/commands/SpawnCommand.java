@@ -22,10 +22,17 @@ public class SpawnCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
+
         if (!(sender instanceof Player p)) {
             log(Level.INFO, PLAYERSONLYCOMMAND);
             return true;
         }
+
+        if (!p.hasPermission("minecore.spawn")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         ConfigData configData = mineCore.getConfigData();
         if (configData.getSpawnLocation() == null) {
             sendChat(p, "&cThere is no spawn!");

@@ -24,6 +24,8 @@ public class MessageCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         StringBuilder message = new StringBuilder();
 
+
+
         if (args.length <= 1) {
             sendChat(sender, "&cINVALID USAGE: /message <PLAYER> <MESSAGE>");
             return true;
@@ -32,6 +34,10 @@ public class MessageCommand implements CommandExecutor {
         Player p = (Player) sender;
         Player recipient = Bukkit.getPlayer(args[0]);
 
+        if (!p.hasPermission("minecore.message")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
 
         if (recipient == null || !recipient.isOnline()) {
             sendChat(sender, "&cPlayer is not online.");

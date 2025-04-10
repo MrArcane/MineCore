@@ -3,10 +3,12 @@ package me.arkallic.minecore.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
-import static me.arkallic.minecore.utils.ChatUtils.announceToServer;
+import static me.arkallic.minecore.utils.ChatUtils.broadcast;
+import static me.arkallic.minecore.utils.ChatUtils.sendChat;
 
-public class AnnounceCommand implements CommandExecutor {
+public class BroadcastCommand implements CommandExecutor {
     /**
      * Executes the given command, returning its success.
      * <br>
@@ -23,11 +25,15 @@ public class AnnounceCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         StringBuilder message = new StringBuilder();
 
+        if (sender instanceof Player player && !player.hasPermission("minecore.broadcast")) {
+            sendChat(player, "&cYou don't have permission to use this command.");
+            return true;
+        }
         for (String arg : args) {
             message.append(arg).append(" ");
         }
 
-        announceToServer(message.toString().trim());
+        broadcast(message.toString().trim());
         return true;
     }
 }

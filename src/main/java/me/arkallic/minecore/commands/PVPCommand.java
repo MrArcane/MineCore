@@ -38,6 +38,11 @@ public class PVPCommand implements CommandExecutor {
             return true;
         }
 
+        if (!p.hasPermission("minecore.pvp")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         PlayerData pd = playerDataManager.get(p.getUniqueId());
         String pvpStatus = (pd.pvpEnabled() ? "Disabled" : "Enabled");
 

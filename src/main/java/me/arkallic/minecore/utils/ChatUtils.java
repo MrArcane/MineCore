@@ -35,8 +35,8 @@ public class ChatUtils {
         sender.sendMessage(color(message));
     }
 
-    public static void announceToServer(String message) {
-        String formattedMessage = "&6☑ &l&bAnnouncement: &f" + message;
+    public static void broadcast(String message) {
+        String formattedMessage = "&6☑ &l&bBroadcast: &f" + message;
         for (Player p : Bukkit.getOnlinePlayers()) {
             sendChat(p, formattedMessage);
         }

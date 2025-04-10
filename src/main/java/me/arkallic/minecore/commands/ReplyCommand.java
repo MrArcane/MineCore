@@ -43,6 +43,11 @@ public class ReplyCommand implements CommandExecutor {
             return true;
         }
 
+        if (!p.hasPermission("minecore.reply")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         if (args.length == 0) {
             sendChat(p, "&cINVALID USAGE: /reply <message>");
             return true;

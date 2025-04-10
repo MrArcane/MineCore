@@ -37,6 +37,11 @@ public class SetHomeCommand implements CommandExecutor {
             return true;
         }
 
+        if (sender instanceof Player player && !player.hasPermission("minecore.sethome")) {
+            sendChat(player, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         if (args.length != 1) {
             sendChat(p, "&cINVALID USAGE: /sethome <NAME>");
             return true;

@@ -39,6 +39,11 @@ public class IgnoreCommand implements CommandExecutor {
             return true;
         }
 
+        if (!p.hasPermission("minecore.ignore")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
         if (args.length != 1) {
             sendChat(sender, "&cUSAGE: /ignore <PLAYER>");
             return true;

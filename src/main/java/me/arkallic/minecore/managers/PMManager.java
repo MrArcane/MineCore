@@ -28,6 +28,21 @@ public class PMManager {
     public void sendMail(Player player, OfflinePlayer target, String message) {
         UUID targetID = target.getUniqueId();
 
+
+        if (playerDataManager.get(player.getUniqueId()).isMuted()) {
+            sendChat(player, "&cYou're muted and cannot speak in chat.");
+            return;
+        }
+
+        if (playerDataManager.getOrLoad(targetID).isMuted()) {
+            sendChat(player, "&c" + target.getName() + " is muted and cannot chat.");
+
+            if (!target.isOnline()) {
+                playerDataManager.unregister(targetID);
+            }
+            return;
+        }
+
         if (!playerDataManager.exists(targetID)) {
             sendChat(player, "&cCouldn't find player: " + target.getName());
             return;
@@ -48,6 +63,17 @@ public class PMManager {
 
         if (recipient == null || !recipient.isOnline()) {
             sendChat(sender, "&cThat player is currently offline.");
+            return;
+
+        }
+
+        if (playerDataManager.get(senderUUID).isMuted()) {
+            sendChat(sender, "&cYou're muted and cannot speak in chat.");
+            return;
+        }
+
+        if (playerDataManager.get(recipientUUID).isMuted()) {
+            sendChat(sender, "&c" + recipient.getName() + " is muted and cannot chat.");
             return;
         }
 

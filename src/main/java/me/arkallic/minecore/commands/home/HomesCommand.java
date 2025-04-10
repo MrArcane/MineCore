@@ -39,6 +39,10 @@ public class HomesCommand implements CommandExecutor {
             log(Level.INFO, PLAYERSONLYCOMMAND);
             return true;
         }
+        if (sender instanceof Player player && !player.hasPermission("minecore.home")) {
+            sendChat(player, "&cYou don't have permission to use this command.");
+            return true;
+        }
         homeManager.getHomesList(p.getUniqueId());
         return true;
     }

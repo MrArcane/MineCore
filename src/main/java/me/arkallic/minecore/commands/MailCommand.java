@@ -54,7 +54,11 @@ public class MailCommand implements CommandExecutor {
             return true;
         }
 
-        PlayerData pd = playerDataManager.get(p.getUniqueId());
+        if (!p.hasPermission("minecore.mail")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
 
         if (args.length == 0) {
             sendHelpMessage(p);

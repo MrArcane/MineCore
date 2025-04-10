@@ -40,6 +40,12 @@ public class UnIgnoreCommand implements CommandExecutor {
             return true;
         }
 
+        if (!p.hasPermission("minecore.unignore")) {
+            sendChat(p, "&cYou don't have permission to use this command.");
+            return true;
+        }
+
+
         if (args.length != 1) {
             sendChat(sender, "&cUSAGE: /unignore <PLAYER>");
             return true;
